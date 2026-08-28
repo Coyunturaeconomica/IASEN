@@ -38,9 +38,16 @@ a:hover{text-decoration:underline}
 
 /* ---------- barra superior ---------- */
 .top{
-  position:sticky; top:0; z-index:50; background:var(--surface);
-  border-bottom:1px solid var(--border);
+  position:sticky; top:0; z-index:50;
+  /* La barra superior es siempre negra, en tema claro y en tema oscuro, para
+     que el logo blanco de EAFIT conserve contraste. Las variables de color se
+     redefinen solo dentro de la barra; el resto del tablero no cambia. */
+  background:#000000; color:var(--text);
+  border-bottom:1px solid #2a2a2a;
+  --text:#f2f5f9; --muted:#c3cad5; --surface2:#161a20; --border:#343a44;
+  --accent:#8ab4ff; --accent2:#8d99a9;
 }
+.logo{flex:none; height:30px; width:auto; display:block; margin-right:2px}
 .top .wrap{
   display:flex; align-items:center; gap:10px 14px; flex-wrap:wrap; padding-top:10px; padding-bottom:10px;
 }
@@ -255,6 +262,10 @@ footer{
   border-top:1px solid var(--border); margin-top:20px; padding:22px 0 40px;
   font-size:12.5px; color:var(--muted); line-height:1.7;
 }
+.foot-tit{color:var(--text); font-weight:640; font-size:12.5px; margin-bottom:2px}
+.foot-aut{margin-bottom:14px; max-width:78ch}
+.foot-blog{color:var(--accent); text-decoration:none; border-bottom:1px solid transparent}
+.foot-blog:hover{border-bottom-color:var(--accent)}
 .toast{
   position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(12px);
   background:var(--text); color:var(--bg); padding:10px 16px; border-radius:9px; font-size:13px;
@@ -264,7 +275,7 @@ footer{
 @media (max-width:860px){
   .wrap{padding:0 16px}
   .top{position:static}
-  .brand{font-size:14px; max-width:none; width:100%; margin-right:0}
+  .brand{font-size:14px; max-width:none; width:auto; flex:1 1 12em; margin-right:0}
   .resumen{grid-template-columns:1fr}
   .grid,.grid2{grid-template-columns:1fr}
   .sgrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
@@ -280,6 +291,8 @@ footer{
 
 <header class="top">
   <div class="wrap">
+    <img class="logo" src="data:image/png;base64,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"
+         alt="Universidad EAFIT" width="269" height="91">
     <div class="brand">Severidad del fenómeno de El Niño sobre el sistema eléctrico colombiano</div>
     <div class="meta">
       <span class="tag">Corte de datos · <b id="mcorte"></b></span>
@@ -471,8 +484,16 @@ footer{
   </section>
 
   <footer>
+    <div class="foot-tit">Autores</div>
+    <div class="foot-aut">
+      Jesús Alonso Botero García · José Miguel Arias Mejía · María Valentina Arenas Barbosa ·
+      Isabella Botero Díaz · Sandra Patricia Gómez Moncada · Nicolas Robledo Aguilar ·
+      Jerónimo Salazar Aguirre · Flor de Belén Sánchez
+    </div>
     Grupo de Coyuntura Económica.<br>
-    Universidad EAFIT.
+    Universidad EAFIT.<br>
+    <a class="foot-blog" href="https://coyunturaeconomicaeafit.wordpress.com"
+       target="_blank" rel="noopener">coyunturaeconomicaeafit.wordpress.com</a>
   </footer>
 </main>
 
