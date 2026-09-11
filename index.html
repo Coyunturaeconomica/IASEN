@@ -285,10 +285,6 @@ footer{
   .card,.tile,.panel{break-inside:avoid; box-shadow:none}
   details{display:none}
 }
-.curso{width:100%;border-collapse:collapse;margin-top:10px;font-size:11.5px}
-.curso th,.curso td{padding:3px 4px;border-bottom:1px solid var(--border2);text-align:right;white-space:nowrap}
-.curso th:first-child,.curso td:first-child{text-align:left;white-space:normal}
-.curso th{color:var(--muted);font-weight:600}
 </style>
 </head>
 <body>
@@ -725,10 +721,6 @@ function renderTiles(){
         entre 50 y 75 es una situación normal; entre 75 y 90 hay deterioro que merece alerta;
         por encima de 90 casi todos los indicadores están cerca de su peor registro histórico.
       </div>
-      <table class="curso">
-        <thead><tr><th>Indicador</th><th>Últimos ${C.ventana} d</th><th>${mesLabel(DATA.mes_ref)}</th><th>Pctl</th></tr></thead>
-        <tbody>${C.detalle.map(x=>`<tr><td>${esc(x.nombre)}</td><td>${fmt(x.valor,x.dec)}</td><td>${fmt(x.valor_mes,x.dec)}</td><td>${fmt(x.adverso_pctl,0)}</td></tr>`).join('')}</tbody>
-      </table>
     </div>
     <div class="kpi">
       <div class="lbl">Lectura ejecutiva</div>
